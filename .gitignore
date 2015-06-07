@@ -8,4 +8,4 @@ articles.json
 *.tar.*
 
 # mid
-*.pyc
+PaJandan/*.pyc
