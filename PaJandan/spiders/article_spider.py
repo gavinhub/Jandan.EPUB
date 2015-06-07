@@ -49,6 +49,9 @@ class ArtSpider(CrawlSpider):
         l.add_xpath("tag", "//a[@rel='tag']/text()")
         l.add_xpath("origin", "//div[@class='post f']/p/em/a[2]/@href")
         # content
-        content = response.xpath("//div[@class='post f'][1]/*")[4:-4].extract()
-        l.add_value("content", content)
+        content = response.xpath("//div[@class='post f'][1]/*")[4:-4]
+        l.add_value("content", content.extract())
+        # images
+        imgs = content.xpath("img/@src")
+        l.add_value("image_urls", imgs.extract())
         return l.load_item()

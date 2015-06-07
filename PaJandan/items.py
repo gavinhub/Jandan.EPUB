@@ -25,15 +25,20 @@ def art_serialize_content(content):
             content[line] = re.sub(aim, hashobj.hexdigest(), content[line])
     return "".join(content)
 
+def art_none_serialize(obj):
+    return None
+
 
 class ArticleItem(scrapy.Item):
     # Maybe used in pipeline... :]
     ITEM_TYPE = "art"
     
     # define the fields for your item here like:
-    title  = scrapy.Field(serializer=art_serialize_text) # list [Unicode]
-    author = scrapy.Field(serializer=art_serialize_text) # list [Unicode]
-    date   = scrapy.Field(serializer=art_serialize_date) # list [time.struct_time]
-    tag    = scrapy.Field(serializer=art_serialize_text) # list [Unicode]
-    origin = scrapy.Field(serializer=art_serialize_text) # list [Unicode]
-    content= scrapy.Field(serializer=art_serialize_content) # content
+    title   = scrapy.Field(serializer=art_serialize_text) # list [Unicode]
+    author  = scrapy.Field(serializer=art_serialize_text) # list [Unicode]
+    date    = scrapy.Field(serializer=art_serialize_date) # list [time.struct_time]
+    tag     = scrapy.Field(serializer=art_serialize_text) # list [Unicode]
+    origin  = scrapy.Field(serializer=art_serialize_text) # list [Unicode]
+    content = scrapy.Field(serializer=art_serialize_content) # content
+    images  = scrapy.Field(serializer=art_none_serialize) # containing images' information
+    image_urls = scrapy.Field(serializer=art_none_serialize) # images' url

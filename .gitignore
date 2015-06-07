@@ -1,0 +1,11 @@
+# images
+images/
+
+# json
+articles.json
+
+# data
+*.tar.*
+
+# mid
+*.pyc

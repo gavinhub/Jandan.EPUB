@@ -20,4 +20,10 @@ USER_AGENT = 'MyUserAgent/1.0'
 DOWNLOAD_DELAY = 3
 
 # Pipelines
-ITEM_PIPELINES = {'PaJandan.pipelines.PajandanPipeline': 300}
+ITEM_PIPELINES = {
+	'PaJandan.pipelines.PajandanPipeline': 100,
+	'scrapy.contrib.pipeline.images.ImagesPipeline': 1
+	}
+
+# Image
+IMAGES_STORE = 'images/'
