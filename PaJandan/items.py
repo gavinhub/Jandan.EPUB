@@ -15,13 +15,17 @@ def art_serialize_date(date):
     return time.strftime("%Y-%m-%d", date[0])
 
 def art_serialize_content(content):
-    pat = re.compile(r"src=[\'\"](http.+)[\'\"]")
+    pat = re.compile(r"src=[\'\"](http[^ ]+)[\'\"]")
     for line in range(len(content)):
         aim = pat.search(content[line])
         if aim:
             aim = aim.group(1)
             hashobj = hashlib.sha1()
-            hashobj.update(aim.encode('utf-8'))
+            try:
+                hashobj.update(str(aim))
+            except Exception, e:
+                scrapy.log.msg("===============>" + aim + "<================")
+            
             content[line] = re.sub(aim, hashobj.hexdigest(), content[line])
     return "".join(content)
 

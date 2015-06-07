@@ -27,3 +27,4 @@ ITEM_PIPELINES = {
 
 # Image
 IMAGES_STORE = 'images/'
+IMAGES_EXPIRES = 90

@@ -34,7 +34,7 @@ class ArtSpider(CrawlSpider):
                 ArtSpider.start_urls.append("http://jandan.net/%s" % datestr)
         else:
             ArtSpider.start_urls.append("http://jandan.net/")
-
+        
     
     def parse_art(self, response):
 
