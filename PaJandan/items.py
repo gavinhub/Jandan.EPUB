@@ -26,7 +26,7 @@ def art_serialize_content(content):
             except Exception, e:
                 scrapy.log.msg("===============>" + aim + "<================")
             
-            content[line] = re.sub(aim, hashobj.hexdigest(), content[line])
+            content[line] = re.sub(aim, "../images/" + hashobj.hexdigest() + ".jpg", content[line])
     return "".join(content)
 
 def art_none_serialize(obj):
@@ -43,6 +43,7 @@ class ArticleItem(scrapy.Item):
     date    = scrapy.Field(serializer=art_serialize_date) # list [time.struct_time]
     tag     = scrapy.Field(serializer=art_serialize_text) # list [Unicode]
     origin  = scrapy.Field(serializer=art_serialize_text) # list [Unicode]
+    en_title= scrapy.Field(serializer=art_serialize_text) # list [Unicode]
     content = scrapy.Field(serializer=art_serialize_content) # content
     images  = scrapy.Field(serializer=art_none_serialize) # containing images' information
     image_urls = scrapy.Field(serializer=art_none_serialize) # images' url

@@ -9,3 +9,8 @@ articles.json
 
 # mid
 PaJandan/*.pyc
+PaJandan/spiders/*.pyc
+
+
+# epub
+epub/

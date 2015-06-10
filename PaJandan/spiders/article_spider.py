@@ -55,4 +55,7 @@ class ArtSpider(CrawlSpider):
         # images: put urls into image_urls[], then pipline will download them.
         imgs = content.xpath("img/@src")
         l.add_value("image_urls", imgs.extract())
+        # English Title, cut from url
+        en_title = re.search(r'([^/]+)\.html', response.url).group(1)
+        l.add_value("en_title", [en_title])
         return l.load_item()
