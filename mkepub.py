@@ -3,4 +3,3 @@ import os
 
 mker = EpubMaker('jdt', os.getcwdu())
 mker.run()
-mker.display_test()
