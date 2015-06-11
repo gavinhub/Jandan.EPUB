@@ -1,4 +1,4 @@
-# PaJandan - 爬煎蛋
+# Jandan.EPUB - 煎蛋电子书
 煎蛋爬虫，使用Scrapy，未完成
 
 ## Features
