@@ -27,12 +27,8 @@ class ArtSpider(CrawlSpider):
         # Traversal the days
         date = month.split('/')
         Y, m = int(date[0]), int(date[1])
-        days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        dayrange = range(1, days[m]+1)
-        if m == 2 and (Y%400==0 or (Y%4==0 and Y%100!=0)):
-            dayrange.append(29)
         digit = lambda s: str(s) if len(str(s))==2 else '0'+str(s)
-        for d in dayrange:
+        for d in range(1, 32):
             datestr = str(Y) + '/' + digit(m) + '/' + digit(d)
             ArtSpider.start_urls.append("http://jandan.net/%s" % datestr)
         
