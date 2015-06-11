@@ -29,6 +29,14 @@ def art_serialize_content(content):
             content[line] = re.sub(aim, "../images/" + hashobj.hexdigest() + ".jpg", content[line])
     return "".join(content)
 
+def art_image_serialize(image_urls):
+    names = []
+    for url in image_urls:
+        hashobj = hashlib.sha1()
+        hashobj.update(url)
+        names.append(hashobj.hexdigest())
+    return names
+
 def art_none_serialize(obj):
     return None
 
@@ -46,4 +54,4 @@ class ArticleItem(scrapy.Item):
     en_title= scrapy.Field(serializer=art_serialize_text) # list [Unicode]
     content = scrapy.Field(serializer=art_serialize_content) # content
     images  = scrapy.Field(serializer=art_none_serialize) # containing images' information
-    image_urls = scrapy.Field(serializer=art_none_serialize) # images' url
+    image_urls = scrapy.Field(serializer=art_image_serialize) # images' url
