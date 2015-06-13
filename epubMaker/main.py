@@ -9,12 +9,13 @@ class EpubMaker:
         self.filename = filename
         self.root = rootpath.rstrip(os.sep) + os.sep # with ending '/'
         self.image_names = set()
-        self.article_titles = [] # (title date)
+        self.articles = [] # (title, date)
 
 
     def run(self):
         self.archtecture()
         self.process_json()
+        self.build_indexpage()
         
 
     # Get file system ready.
@@ -64,7 +65,10 @@ class EpubMaker:
                     self.image_names.add(imname)
 
                 # save article name
-                self.article_titles.append((art_dict[u'title'], art_dict[u'date']))
+                self.articles.append((art_dict[u'title'], 
+                    art_dict[u'en_title'], 
+                    art_dict[u'tag'], 
+                    art_dict[u'date']))
 
                 # build article html
                 article_file_name = self.root + os.sep.join([
@@ -81,8 +85,22 @@ class EpubMaker:
                     art_dict[u'date'],
                     art_dict[u'tag'],
                     art_dict[u'content'])
-
+    
+    def build_indexpage(self):
+        Li_Templete = "<li><a href='%s'>%s</a>"
+        menu = []
+        for art in self.articles:
+            li = Li_Templete % (art[1]+'.html', art[0])
+            menu.append(li)
+        index_name = self.root + os.sep.join([
+                    'epub', 
+                    self.filename, 
+                    'OEBPS', 
+                    'html', 
+                    'index.html'
+                    ])
+        HB.build_file(index_name, HB.INDEX_TEMPLATE, ''.join(menu))
 
     def display_test(self):
-        print self.image_names
+        pass
 
