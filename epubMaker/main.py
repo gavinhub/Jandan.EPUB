@@ -118,6 +118,7 @@ class EpubMaker:
     def register(self):
         rg = RG(self)
         rg.build_opf()
+        rg.build_ncx()
 
     def display_test(self):
         pass
