@@ -1,5 +1,6 @@
 import os, errno, shutil, json
 from html_builder import HtmlBuilder as HB
+from register import Register as RG
 
 class EpubMaker:
     ''' Make the epub file according to `article.json`'''
@@ -9,14 +10,15 @@ class EpubMaker:
         self.filename = filename
         self.root = rootpath.rstrip(os.sep) + os.sep # with ending '/'
         self.image_names = set()
-        self.articles = [] # (title, date)
+        self.articles = [] # (title, en_title, tag, date)
 
 
     def run(self):
         self.archtecture()
         self.process_json()
         self.build_indexpage()
-        
+        self.build_infopage()
+        self.register()
 
     # Get file system ready.
     # @param No
@@ -86,6 +88,7 @@ class EpubMaker:
                     art_dict[u'tag'],
                     art_dict[u'content'])
     
+    # build /OEBPS/html/index.html
     def build_indexpage(self):
         Li_Templete = "<li><a href='%s'>%s</a>"
         menu = []
@@ -100,6 +103,21 @@ class EpubMaker:
                     'index.html'
                     ])
         HB.build_file(index_name, HB.INDEX_TEMPLATE, ''.join(menu))
+
+    # build /OEBPS/html/info.html
+    def build_infopage(self):
+        info_name = self.root + os.sep.join([
+                    'epub', 
+                    self.filename, 
+                    'OEBPS', 
+                    'html', 
+                    'infoPage.html'
+                    ])
+        HB.build_file(info_name, HB.INFOPAGE_TEMPLATE)
+
+    def register(self):
+        rg = RG(self)
+        rg.build_opf()
 
     def display_test(self):
         pass
