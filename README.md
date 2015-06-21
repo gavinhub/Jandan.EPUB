@@ -16,3 +16,9 @@
 - [ ] 优化交互
 - [ ] 适配Windows
 - [ ] 妹子图Bonus :)
+
+## Usage
+  进入Jandan.EPUB目录后：
+  scrapy crawl jandan-article
+  等待爬取，结束后：
+  python mkepub.py
