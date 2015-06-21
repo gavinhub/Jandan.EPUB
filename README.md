@@ -23,6 +23,6 @@
 
 `scrapy crawl jandan-article`
 
-等待爬取，结束后：
+默认爬取本月文章，等待爬取，结束后：
 
 `python mkepub.py`
