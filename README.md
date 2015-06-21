@@ -13,12 +13,16 @@
 - [x] 整理内容，重新排版
 - [x] 生成电子书
 - [ ] 美化样式
+- [ ] 优化爬取速度
 - [ ] 优化交互
 - [ ] 适配Windows
 - [ ] 妹子图Bonus :)
 
 ## Usage
-  进入Jandan.EPUB目录后：
-  scrapy crawl jandan-article
-  等待爬取，结束后：
-  python mkepub.py
+进入Jandan.EPUB目录后：
+
+`scrapy crawl jandan-article`
+
+等待爬取，结束后：
+
+`python mkepub.py`
