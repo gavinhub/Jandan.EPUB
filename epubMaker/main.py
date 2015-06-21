@@ -9,7 +9,7 @@ class EpubMaker:
     def __init__(self, filename, rootpath):
         self.filename = filename
         self.root = rootpath.rstrip(os.sep) + os.sep # with ending '/'
-        self.image_names = set()
+        self.image_names = set() # no '.jpg'
         self.articles = [] # (title, en_title, tag, date)
 
 
@@ -19,6 +19,7 @@ class EpubMaker:
         self.build_indexpage()
         self.build_infopage()
         self.register()
+        self.copyimgs()
 
     # Get file system ready.
     # @param No
@@ -119,6 +120,12 @@ class EpubMaker:
         rg = RG(self)
         rg.build_opf()
         rg.build_ncx()
+
+    # copy images from 'images/' to 'OEBPS/images/'
+    def copyimgs(self):
+        for imgname in self.image_names:
+            shutil.copy(self.root+os.sep.join(['images', 'full', imgname+'.jpg']), 
+                self.root+os.sep.join(['epub', self.filename, 'OEBPS', 'images', imgname+'.jpg']))
 
     def display_test(self):
         pass
