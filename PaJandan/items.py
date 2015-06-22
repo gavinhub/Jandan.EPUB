@@ -8,6 +8,9 @@
 import scrapy
 import time, re, hashlib
 
+# A serise of serialization functions
+# use these functions to serialize the attributes to text when going through pipeline.
+
 def art_serialize_text(text):
     return text[0]
 

@@ -20,7 +20,10 @@ class ArtSpider(CrawlSpider):
 
     def __init__(self, month=None, *args, **kwargs):
         super(ArtSpider, self).__init__(*args, **kwargs)
+        # Spider starts from `start ruls`
+        #   add urls to this list
         ArtSpider.start_urls = []
+        
         # If month not indecated, set to `this month` 
         if not month:
            month = Time.strftime("%Y/%m")
@@ -30,15 +33,18 @@ class ArtSpider(CrawlSpider):
         digit = lambda s: str(s) if len(str(s))==2 else '0'+str(s)
         for d in range(1, 32):
             datestr = str(Y) + '/' + digit(m) + '/' + digit(d)
-            ArtSpider.start_urls.append("http://jandan.net/%s" % datestr)
-        
+            ArtSpider.start_urls.append("http://jandan.net/%s/" % datestr)
     
+    # There can be several parse functions to be used according to Rules
+    # But we don't need it in this project :]
+
+    # Deal with response
     def parse_art(self, response):
 
         time_str = re.search(r'/([0-9]+/){3}', response.url)
         time = Time.strptime(time_str.group(0), "/%Y/%m/%d/")
 
-        # Load Item
+        # Load Item with `ItemLoader`
         l = ItemLoader(item=ArticleItem(), response=response)
         l.add_xpath("title", "//div[@class='post f']/h1/a/text()")
         l.add_xpath("author", "//div[@class='post f']/div[@class='time_s']/a/text()")

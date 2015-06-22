@@ -11,7 +11,7 @@ import codecs
 
 class PajandanPipeline(object):
     def __init__(self):
-        self.files = {}
+        self.files = {} # may be more than one spider
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -21,6 +21,7 @@ class PajandanPipeline(object):
         return pipeline
 
     def spider_opened(self, spider):
+        # write utf-8 file
         f = codecs.open('articles.json', 'w+', encoding='utf-8')
         self.files[spider] = f
         self.exporter = JsonLinesItemExporter(f, ensure_ascii=False)
