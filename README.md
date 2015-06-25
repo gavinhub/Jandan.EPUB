@@ -1,7 +1,10 @@
 # Jandan.EPUB - 煎蛋电子书
 煎蛋爬虫，使用Scrapy，快完成了！
+
 已经能生成电子书了，看起来还不错～
+
 Spider for Jandan.net; Using Scrapy; Almost done!
+
 It can generate the epub already, looks nice :]
 
 ## Features
@@ -23,11 +26,11 @@ It can generate the epub already, looks nice :]
 
 ## Usage
 
-#自动模式 - auto mode
+###自动模式 - auto mode
 
 `./run.sh [-d <days>] [-f <from date> -t <to date>] [-n filename]`
 
-#手动模式 - manual mode
+###手动模式 - manual mode
     scrapy crawl jandan-article [-L INFO|ERROR|...] 
         [-a dates=(DAYS|RANGE)] [-a length=<days>] [-a from=<from date> -a to=<to date>]`
     ./mkepub.py [-n filename]
