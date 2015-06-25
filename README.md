@@ -21,17 +21,16 @@
 
 ## Usage
 
-#自动模式
+###自动模式
 
 `./run.sh [-d <days>] [-f <from date> -t <to date>] [-n filename]`
 
-#手动模式
-`scrapy crawl jandan-article [-L INFO|ERROR|...] 
-    [-a dates=(DAYS|RANGE)] [-a length=<days>] [-a from=<from date> -a to=<to date>]`
+###手动模式
+    scrapy crawl jandan-article [-L INFO|ERROR|...] 
+        [-a dates=(DAYS|RANGE)] [-a length=<days>] [-a from=<from date> -a to=<to date>]`
+    ./mkepub.py [-n filename]
 
-`./mkepub.py [-n filename]`
-
-#Examples
+###Examples
 下载三天内文章，生成名为“FirstBlood”的电子书
 
 `./run.sh -d 3 -n FirstBlood`
