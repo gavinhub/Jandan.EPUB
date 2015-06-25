@@ -10,7 +10,7 @@ class AutoThrottleWithList(AutoThrottle):
 	# param: site_list: list contains the domain to be limited 
 	def __init__(self, crawler):
 		self.limit_list = crawler.settings.getdict("LIMIT_SITES")
-		log.msg("-------------lode AutoThrottle----------", level=log.INFO)
+		log.msg("lode AutoThrottle", level=log.INFO)
 		super(AutoThrottleWithList, self).__init__(crawler)
 
 	def _adjust_delay(self, slot, latency, response):

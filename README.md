@@ -13,8 +13,8 @@
 - [x] 整理内容，重新排版
 - [x] 生成电子书
 - [ ] 美化样式
-- [ ] 压缩图片
-- [ ] 优化爬取速度
+- [x] 压缩图片 (No need)
+- [x] 优化爬取速度 (Should be futher imporved)
 - [ ] 优化交互
 - [ ] 适配Windows
 - [ ] 妹子图Bonus :)
