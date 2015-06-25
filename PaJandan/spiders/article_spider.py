@@ -5,6 +5,7 @@ from scrapy.contrib.loader import ItemLoader
 from PaJandan.items import ArticleItem
 
 import time as Time
+import datetime
 import re
 
 class ArtSpider(CrawlSpider):
@@ -18,22 +19,31 @@ class ArtSpider(CrawlSpider):
             Rule(LinkExtractor(allow=['/([0-9]+/){3}.+html']), callback='parse_art', follow=False),
         ]
 
-    def __init__(self, month=None, *args, **kwargs):
+    def __init__(self, dates="DAYS", *args, **kwargs):
         super(ArtSpider, self).__init__(*args, **kwargs)
         # Spider starts from `start ruls`
         #   add urls to this list
         ArtSpider.start_urls = []
-        
-        # If month not indecated, set to `this month` 
-        if not month:
-           month = Time.strftime("%Y/%m")
-        # Traversal the days
-        date = month.split('/')
-        Y, m = int(date[0]), int(date[1])
-        digit = lambda s: str(s) if len(str(s))==2 else '0'+str(s)
-        for d in range(1, 32):
-            datestr = str(Y) + '/' + digit(m) + '/' + digit(d)
-            ArtSpider.start_urls.append("http://jandan.net/%s/" % datestr)
+
+        date_list = []
+        date_length = 0
+        if dates == "DAYS" and kwargs['length']:
+            ft = datetime.datetime.now()
+            length = int(kwargs['length'])
+        elif dates == "RANGE" and kwargs['from'] and ['to']:
+            ft = datetime.datetime.strptime(kwargs['from'], '%Y/%m/%d')
+            edt = datetime.datetime.strptime(kwargs['to'], '%Y/%m/%d')
+            length = (Time.mktime(edt.timetuple()) - Time.mktime(ft.timetuple())) / 86400 + 1
+        else:
+            raise Exception("Option Error")
+
+        for i in range(length-1, -1, -1):
+            date_list.append((ft - datetime.timedelta(days=i)).strftime("%Y/%m/%d"))
+
+        # translate int to 2-digits number
+        # digit = lambda s: str(s) if len(str(s))==2 else '0'+str(s)
+        for d in date_list:
+            ArtSpider.start_urls.append("http://jandan.net/%s/" % d)
     
     # There can be several parse functions to be used according to Rules
     # But we don't need it in this project :]

@@ -68,9 +68,12 @@ class EpubMaker:
                     self.image_names.add(imname)
 
                 # save article name
+                for t in ('title', 'en_title', 'tag', 'date'):
+                    if not t in art_dict:
+                        art_dict[t] = ""
                 self.articles.append((art_dict[u'title'], 
                     art_dict[u'en_title'], 
-                    art_dict[u'tag'], 
+                    art_dict[u'tag'],
                     art_dict[u'date']))
 
                 # build article html
