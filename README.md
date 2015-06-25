@@ -28,12 +28,11 @@ It can generate the epub already, looks nice :]
 `./run.sh [-d <days>] [-f <from date> -t <to date>] [-n filename]`
 
 #手动模式 - manual mode
-`scrapy crawl jandan-article [-L INFO|ERROR|...] 
-    [-a dates=(DAYS|RANGE)] [-a length=<days>] [-a from=<from date> -a to=<to date>]`
+    scrapy crawl jandan-article [-L INFO|ERROR|...] 
+        [-a dates=(DAYS|RANGE)] [-a length=<days>] [-a from=<from date> -a to=<to date>]`
+    ./mkepub.py [-n filename]
 
-`./mkepub.py [-n filename]`
-
-#Examples
+###Examples
 下载三天内文章，生成名为“FirstBlood”的电子书
 
 `./run.sh -d 3 -n FirstBlood`
