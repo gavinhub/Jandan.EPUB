@@ -6,6 +6,7 @@ class Register():
     def __init__(self, epubmaker):
         self.images = epubmaker.image_names
         self.articles = epubmaker.articles
+        self.filename = epubmaker.filename
         self.reg_root = epubmaker.root + os.sep.join([
             'epub',
             epubmaker.filename,
@@ -15,7 +16,7 @@ class Register():
     def build_opf(self):
         filename =  self.reg_root + 'content.opf'
         with open(filename, 'w') as f:
-            f.write(Register.OPF_HEADER + os.linesep)
+            f.write((Register.OPF_HEADER % self.filename) + os.linesep)
 
             ##### manifest
             f.write("<manifest>" + os.linesep)
@@ -86,7 +87,7 @@ class Register():
 xmlns:dc="http://purl.org/dc/elements/1.1/" 
 unique-identifier="27149527" version="2.0">
 <metadata>
-<dc:title>content.opf</dc:title>
+<dc:title>%s</dc:title>
 <dc:identifier id='27149527'>27149527</dc:identifier>
 <dc:language>zh-cn</dc:language>
 <dc:creator>MyHands</dc:creator>

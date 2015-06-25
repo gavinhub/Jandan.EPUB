@@ -4,7 +4,7 @@ import os
 
 working = os.getcwdu()
 
-ebook_name = 'jdt'
+ebook_name = 'Jandan-June'
 
 mker = EpubMaker(ebook_name, working)
 mker.run()

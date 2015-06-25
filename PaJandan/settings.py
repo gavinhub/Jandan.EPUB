@@ -28,3 +28,14 @@ ITEM_PIPELINES = {
 # Image
 IMAGES_STORE = 'images/'
 IMAGES_EXPIRES = 90
+
+# extensions
+AUTOTHROTTLE_ENABLED = True
+
+LIMIT_SITES = {
+	'jandan.net': 0
+}
+
+EXTENSIONS = {
+	'PaJandan.extensions.throttle.AutoThrottleWithList': 300
+}

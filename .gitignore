@@ -11,7 +11,7 @@ articles.json
 PaJandan/*.pyc
 PaJandan/spiders/*.pyc
 epubMaker/*.pyc
-
+PaJandan/extensions/*.pyc
 
 # epub
 epub/
