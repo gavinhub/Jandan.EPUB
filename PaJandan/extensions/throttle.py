@@ -18,12 +18,6 @@ class AutoThrottleWithList(AutoThrottle):
 		reg = re.search(r'http[s]?://([^/]+).*', response.url)
 		res_domain = reg.group(1)
 		if res_domain in self.limit_list:
-			new_delay = min(max(self.mindelay, latency, (slot.delay + latency) / 2.0), self.maxdelay)
-			# Dont adjust delay if response status != 200 and new delay is smaller
-			# than old one, as error pages (and redirections) are usually small and
-			# so tend to reduce latency, thus provoking a positive feedback by
-			# reducing delay instead of increase.
-			if response.status == 200 or new_delay > slot.delay:
-			    slot.delay = new_delay
+			super(AutoThrottleWithList, self)._adjust_delay(slot, latency, response)
 		else:
 			slot.delay = 0.0
