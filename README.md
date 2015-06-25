@@ -20,10 +20,25 @@
 - [ ] 妹子图Bonus :)
 
 ## Usage
-进入Jandan.EPUB目录后：
 
-`scrapy crawl jandan-article`
+#自动模式
 
-默认爬取本月文章，等待爬取，结束后：
+`./run.sh [-d <days>] [-f <from date> -t <to date>] [-n filename]`
 
-`python mkepub.py`
+#手动模式
+`scrapy crawl jandan-article [-L INFO|ERROR|...] 
+    [-a dates=(DAYS|RANGE)] [-a length=<days>] [-a from=<from date> -a to=<to date>]`
+
+`./mkepub.py [-n filename]`
+
+#Examples
+下载三天内文章，生成名为“FirstBlood”的电子书
+
+`./run.sh -d 3 -n FirstBlood`
+
+或
+
+`scrapy crawl jandan-article -L ERROR -a dates=DAYS -a length=3`
+
+`./mkepub.py -n FirstBlood`
+
