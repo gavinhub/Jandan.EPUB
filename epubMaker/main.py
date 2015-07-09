@@ -64,8 +64,9 @@ class EpubMaker:
                      u'images']
                 '''
                 # save image names
-                for imname in art_dict['image_urls']:
-                    self.image_names.add(imname)
+                if 'image_urls' in art_dict:
+                    for imname in art_dict['image_urls']:
+                        self.image_names.add(imname)
 
                 # save article name
                 for t in ('title', 'en_title', 'tag', 'date'):

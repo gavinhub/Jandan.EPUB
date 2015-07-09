@@ -19,6 +19,13 @@ do
 done
 if [ -z $flag ]; then
 	echo "No valid options recived, try again"
+    echo "----------"
+    echo "Usage:"
+    echo '   ./run.sh [-d <days>] [-f <from date> -t <to date>] [-n <filename>]'
+    echo "Options:"
+    echo '   -d <days>: Download articles in `days` days'
+    echo '   -f <from> -t <to>: Download articles published from `from` to `to`'
+    echo '   -n <filename>: default name is Jandan, so the default output is Jandan.epub'
 	exit 1
 elif [ $flag = "days" ]; then
 	scrapy crawl jandan-article $param -L INFO 
