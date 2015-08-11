@@ -28,9 +28,9 @@ if [ -z $flag ]; then
     echo '   -n <filename>: default name is Jandan, so the default output is Jandan.epub'
 	exit 1
 elif [ $flag = "days" ]; then
-	scrapy crawl jandan-article $param -L INFO 
+	scrapy crawl jandan-article $param #-L INFO 
 elif [ $flag = "range" ] && ! [ -z $to ]; then
-	scrapy crawl jandan-article $param$to -L INFO
+	scrapy crawl jandan-article $param$to #-L INFO
 else
 	echo "Wrong options"
 fi
